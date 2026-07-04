@@ -14,35 +14,19 @@
     <script>
       document.addEventListener("DOMContentLoaded", print);
 
-      function run() {
-        console.log(Date.now());
-        prevTime = Date.now();
-      }
-
-      function run2() {
-        console.log(prevTime);
-        console.log(Date.now());
-        console.log((Date.now() - prevTime) / 1000);
-      }
-
-      function run3() {
-        console.log(localStorage.getItem("msLastTime") / 1000);
-      }
-
       function print() {
         console.log("Page loaded!");
         theTimeSince = (Date.now() - localStorage.getItem("msLastTime")) / 1000;
         if (theTimeSince >= 3600) {
           theTimeSince = Math.round(theTimeSince / 3600);
-          if ((theTimeSince = 1)) {
+          if (theTimeSince === 1) {
             theTimeSince = theTimeSince + " hour";
           } else {
             theTimeSince = theTimeSince + " hours";
           }
-        }
-        if (theTimeSince >= 60) {
+        } else if (theTimeSince >= 60) {
           theTimeSince = Math.round(theTimeSince / 60);
-          if ((theTimeSince = 1)) {
+          if (theTimeSince === 1) {
             theTimeSince = theTimeSince + " minute";
           } else {
             theTimeSince = theTimeSince + " minutes";
@@ -51,7 +35,7 @@
           theTimeSince = theTimeSince + " seconds";
         }
 
-        document.getElementById("timeSince").innerHTML = theTimeSince + " ago";
+        document.getElementById("timeSince").innerHTML = theTimeSince + " ago.";
         localStorage.setItem("msLastTime", Date.now());
       }
     </script>
