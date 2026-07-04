@@ -10,6 +10,12 @@
         color: white;
         text-align: center;
       }
+
+      h1 {
+        margin: 0px;
+        padding: 0px;
+        font-size: 50px;
+      }
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", (event) => {
@@ -28,8 +34,10 @@
           } else {
             theTimeSince = theTimeSince + " minutes";
           }
+        } else if (Math.round(theTimeSince) === 1) {
+          theTimeSince = Math.round(theTimeSince) + " second";
         } else {
-          theTimeSince = theTimeSince + " seconds";
+          theTimeSince = Math.round(theTimeSince) + " seconds";
         }
 
         document.getElementById("timeSince").innerHTML = theTimeSince + " ago.";
@@ -42,9 +50,9 @@
     <span style="position: fixed; top: 0px; left: 5px; text-align: left"
       >/nighttime.html</span
     >
-    <h1>Hello. And Welcome.</h1>
+    <h1>Hello.</h1>
     <img src="assets\lalua-removebg-preview.png" style="height: 200px" />
-    <h1>
+    <h1 style="position: fixed; bottom: 10px; left: 10px">
       Last visited
       <span id="timeSince" style="font-style: italic">just now.</span>
     </h1>
