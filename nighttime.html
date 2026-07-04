@@ -19,8 +19,8 @@
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", (event) => {
-        document.getElementById("welcome").innerHTML = "Welcome back.";
         if (localStorage.getItem("msLastTime")) {
+          document.getElementById("welcome").innerHTML = "Welcome back.";
           theTimeSince =
             (Date.now() - localStorage.getItem("msLastTime")) / 1000;
           if (theTimeSince >= 86400) {
@@ -49,11 +49,12 @@
           } else {
             theTimeSince = Math.round(theTimeSince) + " seconds";
           }
+          document.getElementById("timeSince").innerHTML =
+            theTimeSince + " ago.";
         } else {
           document.getElementById("lastVisited").classList.add("hidden");
         }
 
-        document.getElementById("timeSince").innerHTML = theTimeSince + " ago.";
         localStorage.setItem("msLastTime", Date.now());
       });
     </script>
