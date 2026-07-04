@@ -12,10 +12,7 @@
       }
     </style>
     <script>
-      document.addEventListener("DOMContentLoaded", print);
-
-      function print() {
-        console.log("Page loaded!");
+      document.addEventListener("DOMContentLoaded", (event) => {
         theTimeSince = (Date.now() - localStorage.getItem("msLastTime")) / 1000;
         if (theTimeSince >= 3600) {
           theTimeSince = Math.round(theTimeSince / 3600);
@@ -37,7 +34,7 @@
 
         document.getElementById("timeSince").innerHTML = theTimeSince + " ago.";
         localStorage.setItem("msLastTime", Date.now());
-      }
+      });
     </script>
   </head>
 
