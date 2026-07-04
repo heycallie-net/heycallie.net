@@ -14,14 +14,6 @@
   z-index: -1;
 }
 
-#ifHorriblyWrong {
-  display: none;
-}
-
 body {
   background-color: black;
-}
-
-#horriblyWrongIndicator {
-  color: white;
 }
