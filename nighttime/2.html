@@ -2,7 +2,7 @@
   <head>
     <title>Owls hoot.</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="assets\lalua-removebg-preview.png" />
+    <link rel="icon" href="assets/la_lua.png" />
 
     <style>
       html {
@@ -22,47 +22,6 @@
         margin: 0px;
       }
     </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        if (localStorage.getItem("msLastTime")) {
-          document.getElementById("welcome").innerHTML = "WELCOME BACK.";
-          theTimeSince =
-            (Date.now() - localStorage.getItem("msLastTime")) / 1000;
-          if (theTimeSince >= 86400) {
-            theTimeSince = Math.round(theTimeSince / 86400);
-            if (theTimeSince === 1) {
-              theTimeSince = theTimeSince + " day";
-            } else {
-              theTimeSince = theTimeSince + " days";
-            }
-          } else if (theTimeSince >= 3600) {
-            theTimeSince = Math.round(theTimeSince / 3600);
-            if (theTimeSince === 1) {
-              theTimeSince = theTimeSince + " hour";
-            } else {
-              theTimeSince = theTimeSince + " hours";
-            }
-          } else if (theTimeSince >= 60) {
-            theTimeSince = Math.round(theTimeSince / 60);
-            if (theTimeSince === 1) {
-              theTimeSince = theTimeSince + " minute";
-            } else {
-              theTimeSince = theTimeSince + " minutes";
-            }
-          } else if (Math.round(theTimeSince) === 1) {
-            theTimeSince = Math.round(theTimeSince) + " second";
-          } else {
-            theTimeSince = Math.round(theTimeSince) + " seconds";
-          }
-          document.getElementById("timeSince").innerHTML =
-            theTimeSince + " ago.";
-        } else {
-          document.getElementById("lastVisited").classList.add("hidden");
-        }
-
-        localStorage.setItem("msLastTime", Date.now());
-      });
-    </script>
   </head>
 
   <body>
@@ -77,24 +36,5 @@
       "
       >/nighttime/2.html</span
     >
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        min-height: 100vh;
-      "
-    >
-      <h1 id="welcome">WELCOME.</h1>
-      <a href=""><img src="assets\la_lua.png" style="height: 400px" /></a>
-      <h2
-        id="lastVisited"
-        style="position: fixed; bottom: 10px; left: 10px; font-family: Arial"
-      >
-        Last visited
-        <span id="timeSince" style="font-style: italic"></span>
-      </h2>
-    </div>
   </body>
 </html>
