@@ -63,6 +63,11 @@
   src: url(assets/fonts/LinotypeDidotBold.otf) format("opentype");
 }
 
+@font-face {
+  font-family: "Wingdings";
+  src: url(assets/fonts/Wingdings-Regular.ttf) format("truetype");
+}
+
 @keyframes rainbow-color-change {
   0%,
   100% {
