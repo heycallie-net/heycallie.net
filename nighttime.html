@@ -10,12 +10,13 @@
         color: white;
         text-align: center;
         overflow: hidden;
-        font-family: "Wingdings";
+        font-family: "Arial";
       }
 
       h1 {
         margin: 0px;
         font-size: 50px;
+        font-style: italic;
       }
 
       h2 {
@@ -25,11 +26,23 @@
       p {
         margin: 0px;
       }
+
+      input {
+        border-radius: 18px;
+        width: 342px;
+        height: 44px;
+        font-size: 20px;
+        border-width: 4px;
+        background-color: black;
+        color: white;
+        margin-top: 10px;
+        padding-left: 10px;
+      }
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", (event) => {
         if (localStorage.getItem("msLastTime")) {
-          document.getElementById("welcome").innerHTML = "WELCOME BACK.";
+          document.getElementById("welcome").innerHTML = "welcome back.";
           theTimeSince =
             (Date.now() - localStorage.getItem("msLastTime")) / 1000;
           if (theTimeSince >= 86400) {
@@ -65,7 +78,27 @@
         }
 
         localStorage.setItem("msLastTime", Date.now());
+
+        showTime();
+        setInterval(showTime, 1000);
       });
+
+      function showTime() {
+        // Source - https://stackoverflow.com/a/39528161
+        // Posted by pstryk, modified by community. See post 'Timeline' for change history
+        // Retrieved 2026-07-05, License - CC BY-SA 4.0
+
+        var d = new Date();
+        var n = d.toLocaleTimeString();
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+        var yyyy = today.getFullYear();
+
+        var today = mm + "/" + dd + "/" + yyyy;
+        document.getElementById("timeNow").innerHTML =
+          today + "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp " + n;
+      }
     </script>
   </head>
 
@@ -86,16 +119,40 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
         min-height: 100vh;
       "
     >
-      <h1>
-        <span id="welcome">WELCOME</span>
-      </h1>
-      <a href="nighttime/2.html"
-        ><img src="assets\la_lua.png" style="height: 400px"
-      /></a>
+      <div style="display: flex; align-items: center; gap: 40px">
+        <div style="display: flex; flex-direction: column; text-align: center">
+          <h1>
+            <span id="welcome">welcome.</span>
+          </h1>
+
+          <p
+            style="
+              text-align: right;
+              font-size: 24px;
+              font-style: italic;
+              font-weight: bold;
+              width: fit-content;
+            "
+            id="timeNow"
+          ></p>
+          <br />
+          <div class="search-widget">
+            <form action="https://www.google.com/search" method="get">
+              <input type="text" name="q" placeholder="search something?..." />
+
+              <!-- <button type="submit">Search</button> -->
+            </form>
+          </div>
+        </div>
+
+        <a href="nighttime/2.html">
+          <img src="assets\la_lua.png" style="height: 400px" />
+        </a>
+      </div>
+
       <h2
         id="lastVisited"
         style="position: fixed; bottom: 10px; left: 10px; font-family: Arial"
@@ -115,6 +172,7 @@
         font-size: 30px;
         text-align: right;
         z-index: -1;
+        font-family: Wingdings;
       "
     >
       STARE AT THE STARS STARE AT THE STARS STARE AT THE STARS STARE AT THE
