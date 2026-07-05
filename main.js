@@ -1,4 +1,4 @@
-const today = new Date();
+// const today = new Date();
 
 // if (today.getDay() === 0) {
 //   document.addEventListener("DOMContentLoaded", () => {
