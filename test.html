@@ -1,17 +1,207 @@
 <!doctype html>
-<head>
-  <script>
-    // Source - https://stackoverflow.com/a/4929629
-    // Posted by Samuel Meddows, modified by community. See post 'Timeline' for change history
-    // Retrieved 2026-07-05, License - CC BY-SA 4.0
+<html lang="en">
+  <head>
+    <title>Nighttime</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/la_lua.png" />
 
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
-    var yyyy = today.getFullYear();
+    <style>
+      html {
+        background-image: url(assets/dennis-schweizer-18nR85wWyLY-unsplash.jpg);
+        background-size: cover;
+        background-color: black;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+        font-family: "Arial";
+      }
 
-    today = mm + "/" + dd + "/" + yyyy;
-  </script>
-  <style></style>
-</head>
-<body></body>
+      h1 {
+        margin: 0px;
+        font-size: 50px;
+        font-style: italic;
+      }
+
+      h2 {
+        margin: 0px;
+      }
+
+      p {
+        margin: 0px;
+      }
+
+      input {
+        border-radius: 18px;
+        width: 342px;
+        height: 44px;
+        font-size: 20px;
+        border-width: 4px;
+        background-color: black;
+        color: white;
+        margin-top: 10px;
+        padding-left: 10px;
+      }
+
+      a {
+        color: blue;
+      }
+
+      a:hover {
+        color: red;
+      }
+
+      a.left {
+        text-align: left;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      #lightbulb {
+        /* Smoothly transition the transform property over 0.5 seconds with easing */
+        transition: transform 0.2s ease-in-out;
+      }
+
+      #lightbulb:hover {
+        transform: translateY(30px);
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        if (localStorage.getItem("msLastTime")) {
+          document.getElementById("welcome").innerHTML = "welcome back.";
+          theTimeSince =
+            (Date.now() - localStorage.getItem("msLastTime")) / 1000;
+          if (theTimeSince >= 86400) {
+            theTimeSince = Math.round(theTimeSince / 86400);
+            if (theTimeSince === 1) {
+              theTimeSince = theTimeSince + " day";
+            } else {
+              theTimeSince = theTimeSince + " days";
+            }
+          } else if (theTimeSince >= 3600) {
+            theTimeSince = Math.round(theTimeSince / 3600);
+            if (theTimeSince === 1) {
+              theTimeSince = theTimeSince + " hour";
+            } else {
+              theTimeSince = theTimeSince + " hours";
+            }
+          } else if (theTimeSince >= 60) {
+            theTimeSince = Math.round(theTimeSince / 60);
+            if (theTimeSince === 1) {
+              theTimeSince = theTimeSince + " minute";
+            } else {
+              theTimeSince = theTimeSince + " minutes";
+            }
+          } else if (Math.round(theTimeSince) === 1) {
+            theTimeSince = Math.round(theTimeSince) + " second";
+          } else {
+            theTimeSince = Math.round(theTimeSince) + " seconds";
+          }
+          document.getElementById("timeSince").innerHTML =
+            theTimeSince + " ago.";
+        } else {
+          document.getElementById("lastVisited").classList.add("hidden");
+        }
+
+        localStorage.setItem("msLastTime", Date.now());
+
+        showTime();
+        setInterval(showTime, 1000);
+      });
+
+      function showTime() {
+        // Source - https://stackoverflow.com/a/39528161
+        // Posted by pstryk, modified by community. See post 'Timeline' for change history
+        // Retrieved 2026-07-05, License - CC BY-SA 4.0
+
+        var d = new Date();
+        var n = d.toLocaleTimeString();
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+        var yyyy = today.getFullYear();
+
+        var today = mm + "/" + dd + "/" + yyyy;
+        document.getElementById("timeNow").innerHTML = n;
+        document.getElementById("dateNow").innerHTML = today;
+      }
+    </script>
+  </head>
+
+  <body>
+    <img
+      src="/image.png"
+      style="position: fixed; top: -100px; right: 100px"
+      id="lightbulb"
+    />
+    <span
+      style="
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        text-align: left;
+        font-size: 20px;
+        font-family: Cascadia Mono;
+      "
+      >/</span
+    >
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 0px;
+          flex-direction: column;
+        "
+      >
+        <h1>
+          <span id="welcome">welcome.</span>
+        </h1>
+
+        <div style="display: flex; gap: 40px; align-items: flex-start">
+          <div
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <p
+              style="font-size: 24px; font-style: italic; font-weight: bold"
+              id="dateNow"
+            ></p>
+            <a href="desktop">desktop</a>
+            <a href="whatchacallitsname/">whatchacallitsname</a>
+          </div>
+
+          <div
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <p
+              style="font-size: 24px; font-style: italic; font-weight: bold"
+              id="timeNow"
+            ></p>
+            <a href="nighttime">nighttime</a>
+            <a href="credits">credits</a>
+          </div>
+        </div>
+      </div>
+
+      <img src="assets/la_lua.png" style="height: 400px" />
+
+      <h2
+        id="lastVisited"
+        style="position: fixed; bottom: 10px; left: 10px; font-family: Arial"
+      >
+        Last visited
+        <span id="timeSince" style="font-style: italic"></span>
+        <br />
+      </h2>
+    </div>
+  </body>
+</html>
