@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Nighttime</title>
+    <title>Hey, Callie!</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="assets/la_lua.png" />
 
@@ -18,7 +18,7 @@
 
       h1 {
         margin: 0px;
-        font-size: 50px;
+        font-size: 66px;
         font-style: italic;
       }
 
@@ -43,11 +43,12 @@
       }
 
       a {
-        color: blue;
+        color: #caae88;
+        font-size: 24px;
       }
 
       a:hover {
-        color: red;
+        color: #54504a;
       }
 
       a.left {
@@ -127,14 +128,29 @@
         document.getElementById("timeNow").innerHTML = n;
         document.getElementById("dateNow").innerHTML = today;
       }
+
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   if (localStorage.getItem("lightMode") === "true") {
+      //     loadContent("indexlight.html");
+      //   }
+      // });
+
+      async function loadContent(file) {
+        const response = await fetch(file);
+        const html = await response.text();
+        document.getElementById("main").innerHTML = html;
+        localStorage.setItem("lightMode", "true");
+      }
     </script>
   </head>
 
-  <body>
+  <body id="main">
     <img
       src="/image.png"
-      style="position: fixed; top: -100px; right: 100px"
+      style="position: fixed; top: -100px; right: 218px; cursor: pointer"
       id="lightbulb"
+      onclick="loadContent('indexlight.html')"
+      title="Turn on the lights?"
     />
     <span
       style="
@@ -145,7 +161,7 @@
         font-size: 20px;
         font-family: Cascadia Mono;
       "
-      >/</span
+      >/index.html</span
     >
     <div
       style="
@@ -172,7 +188,7 @@
             style="display: flex; flex-direction: column; align-items: center"
           >
             <p
-              style="font-size: 24px; font-style: italic; font-weight: bold"
+              style="font-size: 30px; font-style: italic; font-weight: bold"
               id="dateNow"
             ></p>
             <a href="desktop">desktop</a>
@@ -183,7 +199,7 @@
             style="display: flex; flex-direction: column; align-items: center"
           >
             <p
-              style="font-size: 24px; font-style: italic; font-weight: bold"
+              style="font-size: 30px; font-style: italic; font-weight: bold"
               id="timeNow"
             ></p>
             <a href="nighttime">nighttime</a>
