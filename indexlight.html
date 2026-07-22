@@ -1,10 +1,23 @@
 <!doctype html>
 <html>
   <head>
-    <style></style>
+    <style>
+      html {
+        background-image: url(assets/windows_xp_14.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
 
   <body id="main">
+    <img
+      src="assets/darkbulb.png"
+      style="position: fixed; top: -100px; right: 218px; cursor: pointer"
+      id="lightbulb"
+      onclick="loadContent('index.html')"
+      title="Turn off the lights?"
+    />
     <span
       style="
         position: fixed;
@@ -16,8 +29,6 @@
       "
       >/index.html</span
     >
-    <h3>
-      This feature hasn't been fully implemented yet :) please refresh the page!
-    </h3>
+    <h3>Welcome to light mode.</h3>
   </body>
 </html>
