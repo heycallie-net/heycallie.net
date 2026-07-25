@@ -1,119 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>credits</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" media="all" />
-    <style>
-      body {
-        background-color: #fbe5f7;
-        margin: 0;
-        padding: 0;
-        /* Centers everything horizontally and vertically */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        font-family: sans-serif;
-        text-align: center;
+    <script>
+      function runFunction() {
+        document.dispatchEvent(
+          new Event("DOMContentLoaded", { bubbles: true, cancelable: true }),
+        );
+        console.log("Event dispatched!");
       }
 
-      /* Wrapper to hold all central content */
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px; /* Space between rows */
-        max-width: 800px;
-        padding: 20px;
-      }
-
-      /* Wrapper for rows of images or links */
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 15px; /* Spacing between side-by-side items */
-      }
-
-      a {
-        color: purple;
-        text-decoration: underline;
-      }
-
-      a:hover {
-        color: plum;
-      }
-
-      button {
-        cursor: pointer;
-        padding: 8px 16px;
-      }
-
-      .home-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-      }
-    </style>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOMContentLoaded!");
+      });
+    </script>
   </head>
   <body>
-    <button
-      class="home-btn"
-      onclick="window.location.href = 'https://heycallie.net'"
-    >
-      go home
-    </button>
-
-    <div class="container">
-      <div>You have now entered:</div>
-
-      <div class="row">
-        <a href="https://nukocities.neocities.org/">
-          <img
-            src="https://nukocities.neocities.org/img/nukocities.gif"
-            height="50px"
-          />
-        </a>
-        <a href="https://mabsland.com/Adoption.html">
-          <img src="http://www.mabsland.com/banner_mikelo.jpg" height="50px" />
-        </a>
-        <a href="https://frutigeraeroarchive.org">
-          <img
-            src="https://i.ibb.co/JwXSbQY8/frutigeraeroarchive-button.png"
-            height="50px"
-          />
-        </a>
-        <a href="https://blinkies.cafe" target="_blank">
-          <img
-            src="https://blinkies.cafe/b/display/blinkiesCafe-badge.gif"
-            height="50px"
-            alt="blinkies.cafe"
-          />
-        </a>
-      </div>
-
-      <div class="row">
-        <a href="https://anlucas.neocities.org/88x31Buttons" target="_blank"
-          >a.n. lucas's blinkie library</a
-        >
-        <a
-          href="https://www.deviantart.com/marchmountain/art/Windows-XP-High-Resolution-Icon-Pack-916042853"
-          target="_blank"
-          >windows icon pack</a
-        >
-        <a
-          href="https://www.rw-designer.com/cursor-set/w98-3dcursors"
-          target="_blank"
-          >windows 98 3d cursors</a
-        >
-        <a href="https://ko-fi.com/s/7153994e26" target="_blank"
-          >whatchacallitsname assets</a
-        >
-      </div>
-    </div>
+    <button onclick="runFunction()">Load Index</button>
   </body>
 </html>

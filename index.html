@@ -140,6 +140,9 @@
         const html = await response.text();
         document.getElementById("main").innerHTML = html;
         localStorage.setItem("lightMode", "true");
+        document.dispatchEvent(
+          new Event("DOMContentLoaded", { bubbles: true, cancelable: true }),
+        );
       }
     </script>
   </head>
