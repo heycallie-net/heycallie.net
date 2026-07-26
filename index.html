@@ -60,7 +60,6 @@
       }
 
       #lightbulb {
-        /* Smoothly transition the transform property over 0.5 seconds with easing */
         transition: transform 0.2s ease-in-out;
       }
 
@@ -69,42 +68,35 @@
       }
     </style>
     <script>
-      // Front-end JS: Send a request to update the setting
-
+      // Call Cloudflare Worker API to set cookie and refresh
       async function setTheme(enableLightMode) {
-        // 1. Tell Cloudflare Worker to update the cookie to "true" or "false"
         await fetch(`/api/set-theme?mode=${enableLightMode}`);
-
-        // 2. Reload the page so Cloudflare serves the corresponding HTML (index.html vs indexlight.html)
         window.location.reload();
       }
 
       document.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("msLastTime")) {
           document.getElementById("welcome").innerHTML = "welcome back.";
-          theTimeSince =
+          let theTimeSince =
             (Date.now() - localStorage.getItem("msLastTime")) / 1000;
           if (theTimeSince >= 86400) {
             theTimeSince = Math.round(theTimeSince / 86400);
-            if (theTimeSince === 1) {
-              theTimeSince = theTimeSince + " day";
-            } else {
-              theTimeSince = theTimeSince + " days";
-            }
+            theTimeSince =
+              theTimeSince === 1
+                ? theTimeSince + " day"
+                : theTimeSince + " days";
           } else if (theTimeSince >= 3600) {
             theTimeSince = Math.round(theTimeSince / 3600);
-            if (theTimeSince === 1) {
-              theTimeSince = theTimeSince + " hour";
-            } else {
-              theTimeSince = theTimeSince + " hours";
-            }
+            theTimeSince =
+              theTimeSince === 1
+                ? theTimeSince + " hour"
+                : theTimeSince + " hours";
           } else if (theTimeSince >= 60) {
             theTimeSince = Math.round(theTimeSince / 60);
-            if (theTimeSince === 1) {
-              theTimeSince = theTimeSince + " minute";
-            } else {
-              theTimeSince = theTimeSince + " minutes";
-            }
+            theTimeSince =
+              theTimeSince === 1
+                ? theTimeSince + " minute"
+                : theTimeSince + " minutes";
           } else if (Math.round(theTimeSince) === 1) {
             theTimeSince = Math.round(theTimeSince) + " second";
           } else {
@@ -123,20 +115,16 @@
       });
 
       function showTime() {
-        // Source - https://stackoverflow.com/a/39528161
-        // Posted by pstryk, modified by community. See post 'Timeline' for change history
-        // Retrieved 2026-07-05, License - CC BY-SA 4.0
-
         var d = new Date();
         var n = d.toLocaleTimeString();
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, "0");
-        var mm = String(today.getMonth() + 1).padStart(2, "0"); // january is 0
+        var mm = String(today.getMonth() + 1).padStart(2, "0");
         var yyyy = today.getFullYear();
 
-        var today = mm + "/" + dd + "/" + yyyy;
+        var todayStr = mm + "/" + dd + "/" + yyyy;
         document.getElementById("timeNow").innerHTML = n;
-        document.getElementById("dateNow").innerHTML = today;
+        document.getElementById("dateNow").innerHTML = todayStr;
       }
     </script>
   </head>
