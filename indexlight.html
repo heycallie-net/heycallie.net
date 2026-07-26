@@ -8,6 +8,16 @@
         background-size: cover;
       }
     </style>
+
+    <script>
+      async function setTheme(enableLightMode) {
+        // 1. Tell Cloudflare Worker to update the cookie to "true" or "false"
+        await fetch(`/api/set-theme?mode=${enableLightMode}`);
+
+        // 2. Reload the page so Cloudflare serves the corresponding HTML (index.html vs indexlight.html)
+        window.location.reload();
+      }
+    </script>
   </head>
 
   <body id="main">
@@ -15,7 +25,7 @@
       src="assets/darkbulb.png"
       style="position: fixed; top: -100px; right: 218px; cursor: pointer"
       id="lightbulb"
-      onclick="loadContent('index.html')"
+      onclick="setTheme(false)"
       title="Turn off the lights?"
     />
     <span

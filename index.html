@@ -69,7 +69,20 @@
       }
     </style>
     <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
+      // Front-end JS: Send a request to update the setting
+      async function updateThemeCookie(newTheme) {
+        await fetch(`/api/set-theme?theme=${newTheme}`, { method: "POST" });
+      }
+
+      async function setTheme(enableLightMode) {
+        // 1. Tell Cloudflare Worker to update the cookie to "true" or "false"
+        await fetch(`/api/set-theme?mode=${enableLightMode}`);
+
+        // 2. Reload the page so Cloudflare serves the corresponding HTML (index.html vs indexlight.html)
+        window.location.reload();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("msLastTime")) {
           document.getElementById("welcome").innerHTML = "welcome back.";
           theTimeSince =
@@ -121,7 +134,7 @@
         var n = d.toLocaleTimeString();
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, "0");
-        var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+        var mm = String(today.getMonth() + 1).padStart(2, "0"); // january is 0
         var yyyy = today.getFullYear();
 
         var today = mm + "/" + dd + "/" + yyyy;
@@ -129,17 +142,21 @@
         document.getElementById("dateNow").innerHTML = today;
       }
 
-      // document.addEventListener("DOMContentLoaded", () => {
-      //   if (localStorage.getItem("lightMode") === "true") {
-      //     loadContent("indexlight.html");
-      //   }
-      // });
-
-      async function loadContent(file) {
-        const response = await fetch(file);
+      async function loadLight() {
+        const response = await fetch("indexlight.html");
         const html = await response.text();
         document.getElementById("main").innerHTML = html;
         localStorage.setItem("lightMode", "true");
+        document.dispatchEvent(
+          new Event("DOMContentLoaded", { bubbles: true, cancelable: true }),
+        );
+      }
+
+      async function loadDark() {
+        const response = await fetch("index.html");
+        const html = await response.text();
+        document.getElementById("main").innerHTML = html;
+        localStorage.setItem("lightMode", "false");
         document.dispatchEvent(
           new Event("DOMContentLoaded", { bubbles: true, cancelable: true }),
         );
@@ -152,7 +169,7 @@
       src="assets/brightbulb.png"
       style="position: fixed; top: -100px; right: 218px; cursor: pointer"
       id="lightbulb"
-      onclick="loadContent('indexlight.html')"
+      onclick="setTheme(true)"
       title="Turn on the lights?"
     />
     <span
