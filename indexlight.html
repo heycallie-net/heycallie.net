@@ -1,44 +1,28 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <style>
-      html {
-        background-image: url(assets/windows_xp_14.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Light Mode Site</title>
+  </head>
+  <body>
+    <h1>Welcome to the Light Theme!</h1>
+
+    <button id="theme-toggle">Switch to Dark Mode</button>
 
     <script>
       async function setTheme(enableLightMode) {
-        // 1. Tell Cloudflare Worker to update the cookie to "true" or "false"
+        // Send API request to Cloudflare Worker to set cookie via HTTP header
         await fetch(`/api/set-theme?mode=${enableLightMode}`);
 
-        // 2. Reload the page so Cloudflare serves the corresponding HTML (index.html vs indexlight.html)
+        // Reload the page so the Worker serves index.html instead of indexlight.html
         window.location.reload();
       }
-    </script>
-  </head>
 
-  <body id="main">
-    <img
-      src="assets/darkbulb.png"
-      style="position: fixed; top: -100px; right: 218px; cursor: pointer"
-      id="lightbulb"
-      onclick="setTheme(false)"
-      title="Turn off the lights?"
-    />
-    <span
-      style="
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        text-align: left;
-        font-size: 20px;
-        font-family: Cascadia Mono;
-      "
-      >/index.html</span
-    >
-    <h3>Welcome to light mode.</h3>
+      // Attach event listener to the button
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        setTheme(false); // Set lightMode to false
+      });
+    </script>
   </body>
 </html>
