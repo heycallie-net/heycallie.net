@@ -1,4 +1,4 @@
-<!-- <!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Hey, Callie!</title>
@@ -69,16 +69,6 @@
       }
     </style>
     <script>
-      // Front-end JS: Send a request to update the setting
-
-      async function setTheme(enableLightMode) {
-        // 1. Tell Cloudflare Worker to update the cookie to "true" or "false"
-        await fetch(`/api/set-theme?mode=${enableLightMode}`);
-
-        // 2. Reload the page so Cloudflare serves the corresponding HTML (index.html vs indexlight.html)
-        window.location.reload();
-      }
-
       document.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("msLastTime")) {
           document.getElementById("welcome").innerHTML = "welcome back.";
@@ -216,4 +206,4 @@
       </h2>
     </div>
   </body>
-</html> -->
+</html>
