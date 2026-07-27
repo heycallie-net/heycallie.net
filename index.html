@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css" />
     <style>
       #welcomeBorder {
         border-left: 1px solid #7394e4;
@@ -11,10 +12,19 @@
 
       html {
         overflow: hidden;
+        user-select: none;
+      }
+
+      div {
+        border: 1px solid black;
+      }
+
+      p {
+        margin: 0;
       }
 
       #lightSide:hover {
-        background-color: cyan;
+        opacity: 0 !important;
       }
 
       #darkSide:hover {
@@ -23,13 +33,37 @@
 
       #lightSide,
       #darkSide {
-        /* Smoothly interpolates background color changes over 0.2 seconds */
-        transition: background-color 0.2s ease-in-out;
+        transition: opacity 0.2s ease-in-out;
       }
     </style>
+    <script></script>
   </head>
 
   <body>
+    <div
+      style="
+        position: fixed;
+        min-width: 50vw;
+        min-height: 100vh;
+        top: 0px;
+        left: 0px;
+        background-color: #008080;
+        z-index: -1;
+      "
+    ></div>
+    <div
+      id="lightSide"
+      style="
+        position: fixed;
+        min-width: 50vw;
+        min-height: 100vh;
+        top: 0px;
+        left: 0px;
+        background-color: black;
+        z-index: 1;
+        opacity: 50%;
+      "
+    ></div>
     <div
       style="
         display: flex;
@@ -41,18 +75,49 @@
       "
     >
       <div
-        id="lightSide"
+        id="lightButton"
         style="
           display: flex;
-          justify-content: center; /* aligns vertically */
-          /* align-items: center;  aligns horizontally */
-          min-height: 80vh;
+          justify-content: center;
+          align-items: center;
           min-width: 40vw;
+          background-color: #008080;
+          background-image: url(perfect_hue_16.jpg);
+          background-repeat: no-repeat;
+          color: #008080;
+          text-align: center;
+          min-height: 12vh;
+          position: relative;
         "
       >
-        <div style="display: flex; flex-direction: column">
-          <p>Online:</p>
-        </div>
+        <p style="font-family: Arial Narrow Bold Italic; font-size: 32px">
+          <span style="text-shadow: 2px 2px white">go Online?</span>
+        </p>
+
+        <img
+          src="Windows_Logo_(1992-2001).svg"
+          style="position: absolute; left: 3px; height: 64px"
+        />
+        <img
+          src="mikuwave.gif"
+          style="position: absolute; right: 1px; bottom: 0px; height: 64px"
+        />
+        <img
+          src="nukoMarioStar.gif"
+          style="position: absolute; right: 18px; bottom: 52px; height: 26px"
+        />
+        <img
+          src="dolphspin.gif"
+          style="position: absolute; right: 125px; bottom: 8px; height: 86px"
+        />
+        <img
+          src="angelpeace.gif"
+          style="position: absolute; left: 130px; bottom: 0px; height: 86px"
+        />
+        <img
+          src="cirnodance.gif"
+          style="position: absolute; left: 100px; top: 20px; height: 50px"
+        />
       </div>
 
       <div
@@ -66,7 +131,7 @@
         "
       >
         <div style="display: flex; flex-direction: column">
-          <p>Offline:</p>
+          <p>go offline?</p>
         </div>
       </div>
     </div>
