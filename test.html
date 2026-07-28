@@ -1,20 +1,24 @@
 <!doctype html>
 <html>
   <head>
-    <script>
-      function runFunction() {
-        document.dispatchEvent(
-          new Event("DOMContentLoaded", { bubbles: true, cancelable: true }),
-        );
-        console.log("Event dispatched!");
+    <style>
+      .bevel-button {
+        background-color: #c0c0c0; /* Classic Windows 95 gray */
+        border-width: 3px;
+        border-style: outset; /* Makes it look 3D raised */
+        border-color: #ffffff #808080 #808080 #ffffff; /* Top, Right, Bottom, Left */
+        padding: 10px 20px;
+        cursor: pointer;
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        console.log("DOMContentLoaded!");
-      });
-    </script>
+      /* Pushed in effect on hover (or use :active for when clicked) */
+      .bevel-button:hover {
+        border-style: inset; /* Makes it look pushed in */
+        border-color: #808080 #ffffff #ffffff #808080; /* Flips the light and shadow! */
+      }
+    </style>
   </head>
   <body>
-    <button onclick="runFunction()">Load Index</button>
+    <div class="bevel-button" style="width: 10vw; height: 10vh"></div>
   </body>
 </html>

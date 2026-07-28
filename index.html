@@ -15,25 +15,41 @@
         user-select: none;
       }
 
-      div {
+      /* div {
         border: 1px solid black;
-      }
+      } */
 
       p {
         margin: 0;
       }
 
-      #lightSide:hover {
+      #darkSide:hover {
         opacity: 0 !important;
       }
 
-      #darkSide:hover {
-        background-color: red;
-      }
-
-      #lightSide,
       #darkSide {
         transition: opacity 0.2s ease-in-out;
+        opacity: 0.4;
+      }
+
+      #lightSide {
+        opacity: 0.4;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      #lightButton:hover ~ #lightSide,
+      body:has(#lightButton:hover) #lightSide {
+        opacity: 0;
+      }
+
+      #lightButton:hover {
+        border-style: inset !important;
+      }
+
+      #lightButton a:hover {
+        color: cyan !important;
+        text-shadow: 2px 2px #008080 !important;
       }
     </style>
     <script></script>
@@ -52,6 +68,17 @@
       "
     ></div>
     <div
+      style="
+        position: fixed;
+        min-width: 50vw;
+        min-height: 100vh;
+        top: 0px;
+        right: 0px;
+        background-color: #008080;
+        z-index: -1;
+      "
+    ></div>
+    <div
       id="lightSide"
       style="
         position: fixed;
@@ -61,7 +88,19 @@
         left: 0px;
         background-color: black;
         z-index: 1;
-        opacity: 50%;
+      "
+    ></div>
+
+    <div
+      id="darkSide"
+      style="
+        position: fixed;
+        min-width: 50vw;
+        min-height: 100vh;
+        top: 0px;
+        right: 0px;
+        background-color: black;
+        z-index: 1;
       "
     ></div>
     <div
@@ -71,7 +110,7 @@
         justify-content: center;
         flex-direction: row;
         min-height: 100vh;
-        gap: 100px;
+        gap: 10vw;
       "
     >
       <div
@@ -82,57 +121,69 @@
           align-items: center;
           min-width: 40vw;
           background-color: #008080;
-          background-image: url(perfect_hue_16.jpg);
+          background-image: url(assets/perfect_hue_16.jpg);
           background-repeat: no-repeat;
           color: #008080;
+          text-align: center;
+          min-height: 12vh;
+          position: relative;
+          border: 5px 5px 5px 5px;
+          border-style: outset;
+        "
+      >
+        <p style="font-family: Arial Narrow Bold Italic; font-size: 32px">
+          <a
+            style="text-shadow: 2px 2px white"
+            href="https://online.heycallie.net"
+            >go Online?</a
+          >
+        </p>
+
+        <img
+          src="assets/Windows_Logo_(1992-2001).svg"
+          style="position: absolute; left: 3px; height: 64px"
+        />
+        <img
+          src="assets/mikuwave.gif"
+          style="position: absolute; right: 11px; bottom: 0px; height: 64px"
+        />
+        <img
+          src="assets/nukoMarioStar.gif"
+          style="position: absolute; right: 28px; bottom: 52px; height: 26px"
+        />
+        <img
+          src="assets/dolphspin.gif"
+          style="position: absolute; right: 125px; bottom: 8px; height: 86px"
+        />
+        <img
+          src="assets/angelpeace.gif"
+          style="position: absolute; left: 130px; bottom: 0px; height: 86px"
+        />
+        <img
+          src="assets/cirnodance.gif"
+          style="position: absolute; left: 100px; top: 20px; height: 50px"
+        />
+      </div>
+
+      <div
+        id="darkButton"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 40vw;
+          background-color: #008080;
+          background-image: url(assets/starback2.gif);
+          background-repeat: repeat;
+          color: #800000;
           text-align: center;
           min-height: 12vh;
           position: relative;
         "
       >
         <p style="font-family: Arial Narrow Bold Italic; font-size: 32px">
-          <span style="text-shadow: 2px 2px white">go Online?</span>
+          <span style="text-shadow: 2px 2px white">go Offline?</span>
         </p>
-
-        <img
-          src="Windows_Logo_(1992-2001).svg"
-          style="position: absolute; left: 3px; height: 64px"
-        />
-        <img
-          src="mikuwave.gif"
-          style="position: absolute; right: 1px; bottom: 0px; height: 64px"
-        />
-        <img
-          src="nukoMarioStar.gif"
-          style="position: absolute; right: 18px; bottom: 52px; height: 26px"
-        />
-        <img
-          src="dolphspin.gif"
-          style="position: absolute; right: 125px; bottom: 8px; height: 86px"
-        />
-        <img
-          src="angelpeace.gif"
-          style="position: absolute; left: 130px; bottom: 0px; height: 86px"
-        />
-        <img
-          src="cirnodance.gif"
-          style="position: absolute; left: 100px; top: 20px; height: 50px"
-        />
-      </div>
-
-      <div
-        id="darkSide"
-        style="
-          display: flex;
-          justify-content: center;
-          /* align-items: center; */
-          min-height: 80vh;
-          min-width: 40vw;
-        "
-      >
-        <div style="display: flex; flex-direction: column">
-          <p>go offline?</p>
-        </div>
       </div>
     </div>
   </body>
